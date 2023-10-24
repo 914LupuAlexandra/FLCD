@@ -1,10 +1,20 @@
 A B C ... Z
 a b c ... z
 0 1 2 ... 9
-! = * / - +
+! 
+= 
+* 
+/ 
+- 
++
 _
-; : " | &
-( ) 
+; 
+: 
+" 
+| 
+&
+(
+) 
 greater = than
 greater than
 smaller than
