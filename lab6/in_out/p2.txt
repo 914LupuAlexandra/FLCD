@@ -1,0 +1,11 @@
+int a = input();
+int b = input();
+int c = input();
+
+while ( b != 0 ) {
+    c = a % b;
+    a = b;
+    b = c;
+}
+
+print ( a );
