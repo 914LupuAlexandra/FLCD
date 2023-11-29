@@ -1,0 +1,5 @@
+states={p,q,r}
+alphabet={a,b}
+transitions={(p,q,a);(q,q,a);(q,r,b);(p,r,b)}
+initial_state=p
+final_states={r}
