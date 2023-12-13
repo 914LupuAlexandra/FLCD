@@ -1,0 +1,6 @@
+Parser & ParserOutput review
+
+The implementation of the LL(1) parser is very well structured and defined by having functions respecting the single responsibility principle.
+The naming of the variables and the functions are suggestive and intuitive, such as "getProductionByOrderNumber", "generateTree", "computeFirstSets" and so on.
+The table print is organised, which makes it easy to read.
+Unfortunately, the functions are not provided with comments for describing their behaviour.
