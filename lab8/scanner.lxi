@@ -1,0 +1,49 @@
+%{
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    
+
+    int lines = 1;
+%}
+
+%option noyywrap
+
+DIGIT [0-9]
+NON_ZERO_DIGIT [1-9]
+INTEGER [+-]?{NON_ZERO_DIGIT}{DIGIT}*|0
+LETTER [a-zA-Z_]
+SPECIAL_CHAR [ ?:*\^+=.!]
+STRING (\"({LETTER}|{DIGIT}|{SPECIAL_CHAR})*\")
+IDENTIFIER {LETTER}({LETTER}|{DIGIT})*
+
+%%
+
+"input"|"int"|"str"|"if"|"else"|"print"|"elif"|"while" {printf("%s - reserved word\n", yytext);}
+
+"+"|"-"|"*"|"/"|"%"|"<"|"<="|"="|">="|"=="|"!="|">"|"and" printf("%s - operator\n", yytext);
+
+{IDENTIFIER} {printf("%s - identifier\n", yytext);}
+
+{INTEGER} {printf("%s - integer constant\n", yytext);}
+
+{STRING} {printf("%s - string constant\n", yytext);}
+
+"["|"]"|";"|"("|")"|"{"|"}"|"," printf("%s - separator\n", yytext);
+
+[ \t]+ {}
+
+[\n]+ {++lines;}
+
+[+-]0 {printf("Error at line %d\n", lines);}
+[0-9]+[a-zA-Z]+  {printf("Error at line %d\n", lines);}
+
+%%
+
+int main(int argc, char** argv) {
+    if (argc > 1) 
+        yyin = fopen(argv[1], "r");
+    else 
+        yyin = stdin;
+    yylex();
+}
